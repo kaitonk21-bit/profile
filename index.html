@@ -172,19 +172,6 @@
     .contact-option span { display: block; margin-top: 1px; color: var(--muted); font-size: 11px; }
     .toast { position: fixed; left: 50%; bottom: 22px; z-index: 12; max-width: calc(100% - 30px); padding: 11px 16px; border: 1px solid rgba(255,255,255,.8); border-radius: 999px; color: #fff; background: rgba(84,63,70,.94); box-shadow: 0 14px 35px rgba(75,48,57,.24); font-size: 12px; font-weight: 800; opacity: 0; pointer-events: none; transform: translate(-50%, 12px); transition: opacity .2s ease, transform .2s ease; }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
-    .music-prompt { position: fixed; right: 16px; bottom: 18px; z-index: 8; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.82); border-radius: 18px 14px 20px 15px; color: var(--ink); background: rgba(255,253,248,.94); box-shadow: 0 16px 38px rgba(103,66,77,.18); cursor: pointer; animation: musicBounce 2.4s ease-in-out infinite; }
-    .music-prompt[hidden] { display: none; }
-    .music-prompt strong, .music-prompt small { display: block; }
-    .music-prompt strong { font-size: 11px; }
-    .music-prompt small { margin-top: 1px; color: var(--muted); font-size: 9px; }
-    .waveform { display: flex; align-items: center; gap: 2px; height: 22px; }
-    .waveform i { width: 3px; border-radius: 999px; background: var(--pink-deep); animation: wave .75s ease-in-out infinite alternate; }
-    .waveform i:nth-child(1) { height: 9px; }
-    .waveform i:nth-child(2) { height: 18px; animation-delay: -.2s; }
-    .waveform i:nth-child(3) { height: 13px; animation-delay: -.4s; }
-    .waveform i:nth-child(4) { height: 20px; animation-delay: -.1s; }
-    @keyframes wave { to { transform: scaleY(.45); opacity: .55; } }
-    @keyframes musicBounce { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-5px) rotate(1deg); } }
     @keyframes reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 380px) {
@@ -223,7 +210,7 @@
       <span class="tape two" aria-hidden="true"></span>
       <div class="hero-grid">
         <figure class="portrait">
-          <img src="attached_assets/avatar_1786808599057.jpeg" alt="Kaito's profile portrait">
+          <img src="avatar_1786808599057.jpeg" alt="Kaito's profile portrait">
           <figcaption class="portrait-note">hello, it's me</figcaption>
         </figure>
         <div class="intro">
@@ -267,7 +254,7 @@
 
     <div class="section-label">someone special</div>
     <section class="memory-card reveal-on-scroll" aria-labelledby="friendName">
-      <div class="friend-photo"><img src="attached_assets/karina_1786808599058.jpeg" alt="Karina's portrait"></div>
+       <div class="friend-photo"><img src="karina_1786808599058.jpeg" alt="Karina's portrait"></div>
       <div class="memory-copy">
         <h2 id="friendName">karina</h2>
         <p>A tiny place for someone special inside Kaito's favorite memories.</p>
@@ -277,21 +264,21 @@
 
     <div class="section-label">a frame I keep close</div>
     <figure class="banner-card reveal-on-scroll">
-      <img src="attached_assets/banner_1786808599057.jpeg" alt="One of Kaito's favorite scenes">
+      <img src="banner_1786808599057.jpeg" alt="One of Kaito's favorite scenes">
       <figcaption class="banner-caption"><strong>little memories</strong><span>@knagh21</span></figcaption>
     </figure>
 
     <div class="section-label">favorite frames</div>
     <section class="gallery-grid" aria-label="Kaito's favorite photo collection">
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:-2.2deg"><img src="attached_assets/1786804579505_851815468817575980_4892067839717510682_89a332c2a_1786808599054.jpg" alt="Favorite frame one" loading="lazy"><figcaption><strong>summer light</strong><span>01</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:1.8deg"><img src="attached_assets/1786804579545_851815468817575980_4892067839717510682_515b8fae5_1786808599055.jpg" alt="Favorite frame two" loading="lazy"><figcaption><strong>soft winter</strong><span>02</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:1.2deg"><img src="attached_assets/1786804579565_851815468817575980_4892067839717510682_a6d9a05d0_1786808599056.jpg" alt="Favorite frame three" loading="lazy"><figcaption><strong>cherry night</strong><span>03</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.7deg"><img src="attached_assets/1786804579577_851815468817575980_4892067839717510682_59608a95d_1786808599056.jpg" alt="Favorite frame four" loading="lazy"><figcaption><strong>quiet evening</strong><span>04</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.1deg"><img src="attached_assets/1786804579588_851815468817575980_4892067839717510682_6a49a7c6f_1786808599056.jpg" alt="Favorite frame five" loading="lazy"><figcaption><strong>on the stage</strong><span>05</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:2.1deg"><img src="attached_assets/1786804579598_851815468817575980_4892067839717510682_e8862bb21_1786808599056.jpg" alt="Favorite frame six" loading="lazy"><figcaption><strong>city blur</strong><span>06</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.4deg"><img src="attached_assets/1786804579609_851815468817575980_4892067839717510682_c99b36878_1786808599057.jpg" alt="Favorite frame seven" loading="lazy"><figcaption><strong>under the lights</strong><span>07</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:2.4deg"><img src="attached_assets/1c14db30-cd3c-4f4b-9d00-e81fd8dada16_1786808601036.jpg" alt="Favorite frame eight" loading="lazy"><figcaption><strong>spring river</strong><span>08</span></figcaption></figure>
-      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.8deg"><img src="attached_assets/27268fa4-3b44-4371-833a-b14a3072aca8_1786808617111.jpg" alt="Favorite frame nine" loading="lazy"><figcaption><strong>late night walk</strong><span>09</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:-2.2deg"><img src="1786804579505_851815468817575980_4892067839717510682_89a332c2a_1786808599054.jpg" alt="Favorite frame one" loading="lazy"><figcaption><strong>summer light</strong><span>01</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:1.8deg"><img src="1786804579545_851815468817575980_4892067839717510682_515b8fae5_1786808599055.jpg" alt="Favorite frame two" loading="lazy"><figcaption><strong>soft winter</strong><span>02</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:1.2deg"><img src="1786804579565_851815468817575980_4892067839717510682_a6d9a05d0_1786808599056.jpg" alt="Favorite frame three" loading="lazy"><figcaption><strong>cherry night</strong><span>03</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.7deg"><img src="1786804579577_851815468817575980_4892067839717510682_59608a95d_1786808599056.jpg" alt="Favorite frame four" loading="lazy"><figcaption><strong>quiet evening</strong><span>04</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.1deg"><img src="1786804579588_851815468817575980_4892067839717510682_6a49a7c6f_1786808599056.jpg" alt="Favorite frame five" loading="lazy"><figcaption><strong>on the stage</strong><span>05</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:2.1deg"><img src="1786804579598_851815468817575980_4892067839717510682_e8862bb21_1786808599056.jpg" alt="Favorite frame six" loading="lazy"><figcaption><strong>city blur</strong><span>06</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.4deg"><img src="1786804579609_851815468817575980_4892067839717510682_c99b36878_1786808599057.jpg" alt="Favorite frame seven" loading="lazy"><figcaption><strong>under the lights</strong><span>07</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:2.4deg"><img src="1c14db30-cd3c-4f4b-9d00-e81fd8dada16_1786808601036.jpg" alt="Favorite frame eight" loading="lazy"><figcaption><strong>spring river</strong><span>08</span></figcaption></figure>
+       <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.8deg"><img src="27268fa4-3b44-4371-833a-b14a3072aca8_1786808617111.jpg" alt="Favorite frame nine" loading="lazy"><figcaption><strong>late night walk</strong><span>09</span></figcaption></figure>
     </section>
 
     <footer class="footer-bar">
@@ -324,19 +311,13 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <button class="music-prompt" id="musicPrompt" type="button" hidden>
-    <span class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span><strong>Tap to play the soundtrack</strong><small>Your browser paused autoplay</small></span>
-    <span aria-hidden="true">▶</span>
-  </button>
-  <audio id="bgMusic" src="attached_assets/song_1786808599058.mp3" loop autoplay preload="auto"></audio>
+  <audio id="bgMusic" src="song_1786808599058.mp3" loop autoplay muted preload="auto"></audio>
 
   <script>
     const EMAIL = "kaitonk21@gmail.com";
     const audio = document.getElementById("bgMusic");
     const muteBtn = document.getElementById("muteBtn");
     const likeBtn = document.getElementById("likeBtn");
-    const musicPrompt = document.getElementById("musicPrompt");
     const toast = document.getElementById("toast");
     const contactBackdrop = document.getElementById("contactBackdrop");
     let playing = false;
@@ -354,18 +335,43 @@
       muteBtn.classList.toggle("playing", isPlaying);
       muteBtn.textContent = isPlaying ? "◖" : "♫";
       muteBtn.setAttribute("aria-label", isPlaying ? "Pause music" : "Play music");
-      musicPrompt.hidden = isPlaying;
     }
 
-    async function startMusic(showConfirmation = false) {
+    async function startMusic(showConfirmation = false, withSound = true) {
       try {
         audio.volume = 0.55;
+        audio.muted = !withSound;
         await audio.play();
         updateMusicState(true);
-        if (showConfirmation) showToast("Soundtrack is now playing");
+        if (showConfirmation) {
+          showToast(audio.muted ? "Music started — tap once for sound" : "Soundtrack is now playing");
+        }
       } catch {
-        updateMusicState(false);
-        musicPrompt.hidden = false;
+        try {
+          audio.muted = true;
+          await audio.play();
+          updateMusicState(true);
+          if (showConfirmation) showToast("Music started — tap once for sound");
+        } catch {
+          updateMusicState(false);
+        }
+      }
+    }
+
+    async function enableSound() {
+      if (!playing) {
+        await startMusic(true, true);
+        return;
+      }
+      if (!audio.muted) return;
+      try {
+        audio.muted = false;
+        await audio.play();
+        updateMusicState(true);
+        showToast("Soundtrack is now playing");
+      } catch {
+        audio.muted = true;
+        showToast("Tap the music button to enable sound");
       }
     }
 
@@ -378,16 +384,16 @@
     document.getElementById("copyEmailBtn").addEventListener("click", copyEmail);
     document.getElementById("sheetCopyEmailBtn").addEventListener("click", copyEmail);
     muteBtn.addEventListener("click", () => {
-      if (playing) {
+      if (playing && !audio.muted) {
         audio.pause();
         updateMusicState(false);
-        musicPrompt.hidden = true;
         showToast("Music paused");
+      } else if (playing && audio.muted) {
+        enableSound();
       } else {
-        startMusic(true);
+        startMusic(true, true);
       }
     });
-    musicPrompt.addEventListener("click", () => startMusic(true));
 
     likeBtn.addEventListener("click", () => {
       const liked = likeBtn.classList.toggle("liked");
@@ -399,7 +405,8 @@
     window.addEventListener("load", () => {
       startMusic();
       const beginOnFirstInteraction = () => {
-        if (audio.paused) startMusic();
+        if (audio.muted) enableSound();
+        else if (audio.paused) startMusic(true, true);
         window.removeEventListener("pointerdown", beginOnFirstInteraction);
         window.removeEventListener("keydown", beginOnFirstInteraction);
       };
