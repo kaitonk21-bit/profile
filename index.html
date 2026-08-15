@@ -430,32 +430,16 @@
       window.addEventListener("keydown", beginOnFirstInteraction, { once: true });
     });
 
-    const contactMenuBtn = document.getElementById("contactMenuBtn");
-    const sheetCloseBtn = document.getElementById("sheetCloseBtn");
-
-    function openContactModal() {
-      contactBackdrop.removeAttribute("hidden");
-      contactBackdrop.setAttribute("aria-hidden", "false");
-      sheetCloseBtn.focus();
-    }
-
-    function closeContactModal() {
-      contactBackdrop.setAttribute("hidden", "");
-      contactBackdrop.setAttribute("aria-hidden", "true");
-      contactMenuBtn.focus();
-    }
-
-    contactMenuBtn.addEventListener("click", openContactModal);
-    sheetCloseBtn.addEventListener("click", event => {
-      event.preventDefault();
-      event.stopPropagation();
-      closeContactModal();
+    document.getElementById("contactMenuBtn").addEventListener("click", () => {
+      contactBackdrop.hidden = false;
+      document.getElementById("sheetCloseBtn").focus();
     });
+    document.getElementById("sheetCloseBtn").addEventListener("click", () => contactBackdrop.hidden = true);
     contactBackdrop.addEventListener("click", event => {
-      if (event.target === contactBackdrop) closeContactModal();
+      if (event.target === contactBackdrop) contactBackdrop.hidden = true;
     });
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && !contactBackdrop.hidden) closeContactModal();
+      if (event.key === "Escape") contactBackdrop.hidden = true;
     });
 
     document.getElementById("shareBtn").addEventListener("click", async () => {
