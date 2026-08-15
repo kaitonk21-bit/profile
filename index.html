@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8dfe3">
+  <meta name="description" content="Kaito's tiny lovely corner on the internet.">
+  <title>Kaito · A Tiny Lovely Corner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;600&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fffaf1;
+      --paper: #fffdf8;
+      --pink: #e7a7b3;
+      --pink-deep: #bd6f80;
+      --pink-soft: #f8dfe3;
+      --peach: #f5c8a9;
+      --butter: #f4dfa0;
+      --sage: #b8c9ad;
+      --ink: #543f46;
+      --muted: #8e747b;
+      --line: rgba(117, 77, 88, .14);
+      --shadow: 0 22px 55px rgba(132, 83, 96, .16);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 4%, rgba(255,255,255,.95) 0 7%, transparent 7.2%),
+        radial-gradient(circle at 88% 13%, rgba(255,244,208,.8) 0 9%, transparent 9.2%),
+        linear-gradient(145deg, #f8dfe3 0%, #fbedde 47%, #e8efe1 100%);
+      font-family: "Nunito", sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .2;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    button:focus-visible, a:focus-visible { outline: 3px solid rgba(189,111,128,.45); outline-offset: 3px; }
+
+    .decorations { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .doodle { position: absolute; color: rgba(189,111,128,.25); animation: drift 7s ease-in-out infinite; font-size: 42px; }
+    .doodle.one { left: 4%; top: 12%; }
+    .doodle.two { right: 7%; top: 28%; color: rgba(113,143,100,.28); animation-delay: -2s; }
+    .doodle.three { left: 8%; bottom: 14%; color: rgba(207,155,91,.25); animation-delay: -4s; }
+    .doodle.four { right: 10%; bottom: 7%; animation-delay: -1s; }
+    @keyframes drift { 0%,100% { transform: translateY(0) rotate(-7deg); } 50% { transform: translateY(-10px) rotate(7deg); } }
+
+    .page { position: relative; z-index: 1; width: min(100%, 470px); margin: 0 auto; padding: 18px 16px 42px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; animation: reveal .55s ease both; }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand-mark, .round-btn {
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(189,111,128,.2);
+      color: var(--pink-deep);
+      background: rgba(255,253,248,.72);
+      box-shadow: 0 9px 24px rgba(141,89,102,.1);
+    }
+    .brand-mark { width: 42px; height: 42px; flex: 0 0 auto; border-radius: 14px 18px 13px 19px; transform: rotate(-3deg); font-size: 22px; }
+    .brand-copy strong { display: block; font: 600 16px "DynaPuff", cursive; letter-spacing: .01em; }
+    .brand-copy span { display: block; margin-top: 1px; color: var(--muted); font-size: 11px; }
+    .round-btn { width: 42px; height: 42px; flex: 0 0 auto; border-radius: 50%; color: var(--ink); cursor: pointer; transition: transform .18s ease, background .18s ease, color .18s ease; }
+    .round-btn:hover { transform: translateY(-2px) rotate(4deg); background: var(--paper); color: var(--pink-deep); }
+
+    .profile-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px 20px 20px;
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: 34px 24px 36px 26px;
+      background: rgba(255,253,248,.82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      animation: reveal .65s .06s ease both;
+    }
+    .profile-card::before, .profile-card::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+    .profile-card::before { width: 170px; height: 170px; right: -65px; top: -80px; background: rgba(244,223,160,.45); }
+    .profile-card::after { width: 110px; height: 110px; left: -55px; bottom: 36px; background: rgba(184,201,173,.3); }
+    .tape { position: absolute; z-index: 3; width: 70px; height: 22px; border: 1px solid rgba(162,119,87,.08); background: rgba(245,200,169,.68); box-shadow: 0 3px 8px rgba(103,70,56,.06); }
+    .tape.one { left: 46px; top: 13px; transform: rotate(-8deg); }
+    .tape.two { right: 31px; top: 104px; width: 58px; transform: rotate(12deg); background: rgba(244,223,160,.62); }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 140px 1fr; align-items: center; gap: 18px; }
+    .portrait { position: relative; padding: 8px 8px 24px; border: 1px solid rgba(117,77,88,.1); border-radius: 19px 15px 20px 14px; background: #fff; box-shadow: 0 15px 30px rgba(120,75,87,.16); transform: rotate(-3deg); }
+    .portrait img { width: 100%; aspect-ratio: 1 / 1.06; display: block; border-radius: 13px 10px 13px 10px; object-fit: cover; }
+    .portrait-note { position: absolute; left: 0; right: 0; bottom: 5px; text-align: center; color: var(--muted); font: 600 10px "DynaPuff", cursive; letter-spacing: .04em; }
+    .intro { min-width: 0; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border: 1px solid rgba(189,111,128,.16); border-radius: 999px; color: var(--pink-deep); background: var(--pink-soft); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 3px rgba(231,167,179,.2); }
+    h1 { margin-top: 10px; font: 600 clamp(30px, 9vw, 44px)/1 "DynaPuff", cursive; color: var(--ink); letter-spacing: -.04em; }
+    .tagline { margin-top: 5px; color: var(--pink-deep); font-size: 13px; font-weight: 800; }
+    .bio { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .mini-actions { display: flex; gap: 8px; margin-top: 13px; }
+    .mini-btn { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 13px 11px 14px 10px; color: var(--ink); background: rgba(255,255,255,.66); cursor: pointer; transition: transform .16s ease, color .16s ease, background .16s ease; }
+    .mini-btn:hover { transform: translateY(-2px); color: var(--pink-deep); background: #fff; }
+    .mini-btn.liked { color: #c45e76; background: #ffe7eb; }
+    .mini-btn.playing { color: #718f64; background: #edf5e8; }
+
+    .cta-stack { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+    .cta { min-height: 54px; display: flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 18px 15px 19px 14px; text-decoration: none; font-weight: 800; cursor: pointer; transition: transform .17s ease, box-shadow .17s ease, filter .17s ease; }
+    .cta:hover { transform: translateY(-3px) rotate(-.5deg); filter: saturate(1.04); }
+    .cta.primary { grid-column: 1 / -1; color: #fffdf8; background: var(--pink-deep); box-shadow: 0 12px 24px rgba(189,111,128,.28); }
+    .cta.secondary { color: var(--ink); background: #f5e9d0; border: 1px solid rgba(174,135,74,.13); }
+    .cta.facebook { color: #52677a; background: #e7eff2; border: 1px solid rgba(82,103,122,.12); }
+    .email-note { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 7px; margin-top: 11px; color: var(--muted); font-size: 11px; }
+    .email-note button, .email-note a { border: 0; color: var(--pink-deep); background: transparent; font-weight: 800; cursor: pointer; text-decoration: none; }
+
+    .section-label { display: flex; align-items: center; gap: 10px; margin: 22px 4px 11px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .section-label::after { content: ""; height: 1px; flex: 1; background: linear-gradient(90deg, var(--line), transparent); }
+    .interests-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 10px; }
+    .interest-card { position: relative; overflow: hidden; min-height: 126px; padding: 17px; border: 1px solid rgba(255,255,255,.78); border-radius: 23px 17px 25px 19px; background: rgba(255,253,248,.72); box-shadow: 0 14px 32px rgba(122,82,92,.09); transition: transform .25s ease, box-shadow .25s ease; }
+    .interest-card:nth-child(2) { border-radius: 18px 26px 17px 24px; }
+    .interest-card:hover { transform: translateY(-5px) rotate(-1deg); box-shadow: 0 20px 38px rgba(122,82,92,.14); }
+    .interest-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 13px; color: var(--pink-deep); background: var(--pink-soft); font-size: 19px; }
+    .interest-card:nth-child(2) .interest-icon { color: #6f805f; background: #edf3e8; }
+    .interest-card h2 { margin-top: 12px; font: 600 16px "DynaPuff", cursive; }
+    .interest-card p { margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .interest-number { position: absolute; right: 12px; top: 9px; color: rgba(189,111,128,.16); font: 600 31px "DynaPuff", cursive; }
+
+    .memory-card { position: relative; display: grid; grid-template-columns: 88px 1fr; gap: 15px; align-items: center; padding: 15px; border: 1px solid rgba(255,255,255,.78); border-radius: 24px 31px 22px 28px; background: rgba(255,253,248,.74); box-shadow: 0 15px 35px rgba(122,82,92,.1); }
+    .friend-photo { position: relative; transform: rotate(2deg); }
+    .friend-photo img { width: 88px; height: 88px; display: block; object-fit: cover; border: 6px solid #fff; border-radius: 20px 15px 22px 17px; box-shadow: 0 9px 20px rgba(105,71,80,.13); }
+    .memory-copy h2 { font: 600 19px "DynaPuff", cursive; }
+    .memory-copy p { margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .friend-tag { display: inline-flex; margin-top: 9px; padding: 5px 9px; border-radius: 999px; color: #6f805f; background: #edf3e8; font-size: 10px; font-weight: 800; }
+    .banner-card { position: relative; padding: 9px 9px 40px; border: 1px solid rgba(117,77,88,.09); border-radius: 19px 25px 17px 24px; background: #fff; box-shadow: 0 18px 40px rgba(120,75,87,.13); transform: rotate(-1deg); }
+    .banner-card img { width: 100%; height: 210px; display: block; object-fit: cover; border-radius: 13px 18px 11px 16px; }
+    .banner-caption { position: absolute; left: 18px; right: 18px; bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .banner-caption strong { font: 500 13px "DynaPuff", cursive; }
+    .banner-caption span { color: var(--muted); font-size: 10px; }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; align-items: start; }
+    .gallery-card { position: relative; padding: 7px 7px 33px; border: 1px solid rgba(117,77,88,.09); border-radius: 16px 21px 14px 19px; background: #fff; box-shadow: 0 14px 30px rgba(120,75,87,.11); transform: rotate(var(--tilt)); transition: transform .3s ease, box-shadow .3s ease; }
+    .gallery-card:nth-child(even) { margin-top: 24px; }
+    .gallery-card:hover { transform: rotate(0) translateY(-7px) scale(1.015); box-shadow: 0 22px 42px rgba(120,75,87,.17); z-index: 2; }
+    .gallery-card img { width: 100%; aspect-ratio: 3 / 4; display: block; border-radius: 11px 15px 10px 13px; object-fit: cover; transition: transform .55s ease; }
+    .gallery-card:hover img { transform: scale(1.025); }
+    .gallery-card figcaption { position: absolute; left: 12px; right: 12px; bottom: 7px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .gallery-card figcaption strong { color: var(--ink); font: 500 11px "DynaPuff", cursive; letter-spacing: 0; text-transform: none; }
+
+    .reveal-on-scroll { opacity: 0; transform: translateY(24px) scale(.985); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.25,1); }
+    .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+    .footer-bar { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding: 4px 4px 0; }
+    .views { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 11px; font-weight: 800; }
+    .footer-actions { display: flex; gap: 8px; }
+
+    .modal-backdrop { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; padding: 14px; background: rgba(89,58,67,.32); backdrop-filter: blur(7px); }
+    .contact-sheet { width: min(390px, 100%); overflow: visible; border: 1px solid rgba(255,255,255,.85); border-radius: 29px 23px 31px 25px; color: var(--ink); background: var(--paper); box-shadow: 0 30px 90px rgba(93,55,66,.3); }
+    .sheet-inner { position: relative; padding: 24px 20px 20px; }
+    .sheet-tape { position: absolute; width: 72px; height: 20px; top: -9px; left: calc(50% - 36px); background: rgba(244,223,160,.8); transform: rotate(-2deg); }
+    .sheet-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+    .sheet-kicker { color: var(--pink-deep); font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .sheet-title { margin-top: 4px; font: 600 24px "DynaPuff", cursive; }
+    .sheet-copy { margin: 10px 0 16px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .contact-options { display: grid; gap: 9px; }
+    .contact-option { min-height: 57px; display: flex; align-items: center; gap: 12px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 17px 14px 18px 15px; color: var(--ink); background: #fffaf6; text-align: left; text-decoration: none; cursor: pointer; transition: transform .16s ease, background .16s ease; }
+    .contact-option:hover { transform: translateX(3px); background: #fff; }
+    .contact-option strong { display: block; font-size: 13px; }
+    .contact-option span { display: block; margin-top: 1px; color: var(--muted); font-size: 11px; }
+    .toast { position: fixed; left: 50%; bottom: 22px; z-index: 12; max-width: calc(100% - 30px); padding: 11px 16px; border: 1px solid rgba(255,255,255,.8); border-radius: 999px; color: #fff; background: rgba(84,63,70,.94); box-shadow: 0 14px 35px rgba(75,48,57,.24); font-size: 12px; font-weight: 800; opacity: 0; pointer-events: none; transform: translate(-50%, 12px); transition: opacity .2s ease, transform .2s ease; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .music-prompt { position: fixed; right: 16px; bottom: 18px; z-index: 8; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.82); border-radius: 18px 14px 20px 15px; color: var(--ink); background: rgba(255,253,248,.94); box-shadow: 0 16px 38px rgba(103,66,77,.18); cursor: pointer; animation: musicBounce 2.4s ease-in-out infinite; }
+    .music-prompt[hidden] { display: none; }
+    .music-prompt strong, .music-prompt small { display: block; }
+    .music-prompt strong { font-size: 11px; }
+    .music-prompt small { margin-top: 1px; color: var(--muted); font-size: 9px; }
+    .waveform { display: flex; align-items: center; gap: 2px; height: 22px; }
+    .waveform i { width: 3px; border-radius: 999px; background: var(--pink-deep); animation: wave .75s ease-in-out infinite alternate; }
+    .waveform i:nth-child(1) { height: 9px; }
+    .waveform i:nth-child(2) { height: 18px; animation-delay: -.2s; }
+    .waveform i:nth-child(3) { height: 13px; animation-delay: -.4s; }
+    .waveform i:nth-child(4) { height: 20px; animation-delay: -.1s; }
+    @keyframes wave { to { transform: scaleY(.45); opacity: .55; } }
+    @keyframes musicBounce { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-5px) rotate(1deg); } }
+    @keyframes reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 380px) {
+      .hero-grid { grid-template-columns: 118px 1fr; gap: 14px; }
+      .profile-card { padding-inline: 15px; }
+      .interests-grid { grid-template-columns: 1fr; }
+      .banner-card img { height: 185px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="decorations" aria-hidden="true">
+    <div class="doodle one">✧</div>
+    <div class="doodle two">♡</div>
+    <div class="doodle three">✧</div>
+    <div class="doodle four">✦</div>
+  </div>
+
+  <main class="page" id="top">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">✧</div>
+        <div class="brand-copy">
+          <strong>kaito's tiny corner</strong>
+          <span>a soft little place on the internet</span>
+        </div>
+      </div>
+      <button class="round-btn" id="contactMenuBtn" type="button" aria-label="Open contact options" title="Contact">◌</button>
+    </header>
+
+    <section class="profile-card" aria-labelledby="profileName">
+      <span class="tape one" aria-hidden="true"></span>
+      <span class="tape two" aria-hidden="true"></span>
+      <div class="hero-grid">
+        <figure class="portrait">
+          <img src="attached_assets/avatar_1786808599057.jpeg" alt="Kaito's profile portrait">
+          <figcaption class="portrait-note">hello, it's me</figcaption>
+        </figure>
+        <div class="intro">
+          <span class="eyebrow">online</span>
+          <h1 id="profileName">kaito</h1>
+          <div class="tagline">soft-hearted dreamer</div>
+          <p class="bio">Thanks for stopping by. This is my tiny collection of warm connections, favorite scenes, and lovely memories.</p>
+          <div class="mini-actions">
+            <button class="mini-btn" id="muteBtn" type="button" aria-label="Play or pause music" title="Play music">♫</button>
+            <button class="mini-btn" id="likeBtn" type="button" aria-label="Like this profile" aria-pressed="false" title="Like">♡</button>
+          </div>
+        </div>
+      </div>
+      <div class="cta-stack">
+        <a class="cta primary" href="mailto:kaitonk21@gmail.com?subject=Hello%20Kaito&body=Hi%20Kaito%2C%20I%20found%20you%20through%20your%20profile...">✉ <span>Send me an email</span></a>
+        <a class="cta secondary" href="https://www.instagram.com/knagh21" target="_blank" rel="noopener">◎ <span>Instagram</span></a>
+        <a class="cta facebook" href="https://www.facebook.com/share/1P2X5yGq1o/?mibextid=wwXIfr" target="_blank" rel="noopener">f <span>Facebook</span></a>
+      </div>
+      <div class="email-note">
+        <span>kaitonk21@gmail.com</span><span aria-hidden="true">·</span>
+        <button id="copyEmailBtn" type="button">Copy</button><span aria-hidden="true">·</span>
+        <a href="tel:0965100057">0965100057</a>
+      </div>
+    </section>
+
+    <div class="section-label">little things I love</div>
+    <section class="interests-grid reveal-on-scroll" aria-label="Kaito's interests">
+      <article class="interest-card">
+        <span class="interest-number" aria-hidden="true">01</span>
+        <div class="interest-icon" aria-hidden="true">▱</div>
+        <h2>Cooking</h2>
+        <p>Trying recipes and making something comforting from simple ingredients.</p>
+      </article>
+      <article class="interest-card">
+        <span class="interest-number" aria-hidden="true">02</span>
+        <div class="interest-icon" aria-hidden="true">▣</div>
+        <h2>Korean films</h2>
+        <p>Movie nights are my favorite, especially emotional Korean stories and dramas.</p>
+      </article>
+    </section>
+
+    <div class="section-label">someone special</div>
+    <section class="memory-card reveal-on-scroll" aria-labelledby="friendName">
+      <div class="friend-photo"><img src="attached_assets/karina_1786808599058.jpeg" alt="Karina's portrait"></div>
+      <div class="memory-copy">
+        <h2 id="friendName">karina</h2>
+        <p>A tiny place for someone special inside Kaito's favorite memories.</p>
+        <span class="friend-tag">best friend</span>
+      </div>
+    </section>
+
+    <div class="section-label">a frame I keep close</div>
+    <figure class="banner-card reveal-on-scroll">
+      <img src="attached_assets/banner_1786808599057.jpeg" alt="One of Kaito's favorite scenes">
+      <figcaption class="banner-caption"><strong>little memories</strong><span>@knagh21</span></figcaption>
+    </figure>
+
+    <div class="section-label">favorite frames</div>
+    <section class="gallery-grid" aria-label="Kaito's favorite photo collection">
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:-2.2deg"><img src="attached_assets/1786804579505_851815468817575980_4892067839717510682_89a332c2a_1786808599054.jpg" alt="Favorite frame one" loading="lazy"><figcaption><strong>summer light</strong><span>01</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:1.8deg"><img src="attached_assets/1786804579545_851815468817575980_4892067839717510682_515b8fae5_1786808599055.jpg" alt="Favorite frame two" loading="lazy"><figcaption><strong>soft winter</strong><span>02</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:1.2deg"><img src="attached_assets/1786804579565_851815468817575980_4892067839717510682_a6d9a05d0_1786808599056.jpg" alt="Favorite frame three" loading="lazy"><figcaption><strong>cherry night</strong><span>03</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.7deg"><img src="attached_assets/1786804579577_851815468817575980_4892067839717510682_59608a95d_1786808599056.jpg" alt="Favorite frame four" loading="lazy"><figcaption><strong>quiet evening</strong><span>04</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.1deg"><img src="attached_assets/1786804579588_851815468817575980_4892067839717510682_6a49a7c6f_1786808599056.jpg" alt="Favorite frame five" loading="lazy"><figcaption><strong>on the stage</strong><span>05</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:2.1deg"><img src="attached_assets/1786804579598_851815468817575980_4892067839717510682_e8862bb21_1786808599056.jpg" alt="Favorite frame six" loading="lazy"><figcaption><strong>city blur</strong><span>06</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.4deg"><img src="attached_assets/1786804579609_851815468817575980_4892067839717510682_c99b36878_1786808599057.jpg" alt="Favorite frame seven" loading="lazy"><figcaption><strong>under the lights</strong><span>07</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:2.4deg"><img src="attached_assets/1c14db30-cd3c-4f4b-9d00-e81fd8dada16_1786808601036.jpg" alt="Favorite frame eight" loading="lazy"><figcaption><strong>spring river</strong><span>08</span></figcaption></figure>
+      <figure class="gallery-card reveal-on-scroll" style="--tilt:-1.8deg"><img src="attached_assets/27268fa4-3b44-4371-833a-b14a3072aca8_1786808617111.jpg" alt="Favorite frame nine" loading="lazy"><figcaption><strong>late night walk</strong><span>09</span></figcaption></figure>
+    </section>
+
+    <footer class="footer-bar">
+      <div class="views">◉ <span>1,271 lovely visits</span></div>
+      <div class="footer-actions">
+        <button class="round-btn" id="shareBtn" type="button" aria-label="Share this page" title="Share">↗</button>
+        <button class="round-btn" id="scrollTopBtn" type="button" aria-label="Scroll to the top" title="Back to top">↑</button>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="contactBackdrop" hidden>
+    <section class="contact-sheet" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <div class="sheet-inner">
+        <span class="sheet-tape" aria-hidden="true"></span>
+        <div class="sheet-head">
+          <div><div class="sheet-kicker">say hello</div><h2 class="sheet-title" id="contactTitle">Message Kaito</h2></div>
+          <button class="round-btn" id="sheetCloseBtn" type="button" aria-label="Close contact options">×</button>
+        </div>
+        <p class="sheet-copy">Email is the main way to say hello. You can also find Kaito on Instagram, Facebook, or by phone.</p>
+        <div class="contact-options">
+          <a class="contact-option" href="mailto:kaitonk21@gmail.com?subject=Hello%20Kaito"><div><strong>Send an email</strong><span>kaitonk21@gmail.com</span></div></a>
+          <button class="contact-option" id="sheetCopyEmailBtn" type="button"><div><strong>Copy email address</strong><span>Use it in another email app</span></div></button>
+          <a class="contact-option" href="https://www.instagram.com/knagh21" target="_blank" rel="noopener"><div><strong>Instagram</strong><span>@knagh21</span></div></a>
+          <a class="contact-option" href="https://www.facebook.com/share/1P2X5yGq1o/?mibextid=wwXIfr" target="_blank" rel="noopener"><div><strong>Facebook</strong><span>Open the profile</span></div></a>
+          <a class="contact-option" href="tel:0965100057"><div><strong>Phone call</strong><span>0965100057</span></div></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button class="music-prompt" id="musicPrompt" type="button" hidden>
+    <span class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span><strong>Tap to play the soundtrack</strong><small>Your browser paused autoplay</small></span>
+    <span aria-hidden="true">▶</span>
+  </button>
+  <audio id="bgMusic" src="attached_assets/song_1786808599058.mp3" loop autoplay preload="auto"></audio>
+
+  <script>
+    const EMAIL = "kaitonk21@gmail.com";
+    const audio = document.getElementById("bgMusic");
+    const muteBtn = document.getElementById("muteBtn");
+    const likeBtn = document.getElementById("likeBtn");
+    const musicPrompt = document.getElementById("musicPrompt");
+    const toast = document.getElementById("toast");
+    const contactBackdrop = document.getElementById("contactBackdrop");
+    let playing = false;
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    function updateMusicState(isPlaying) {
+      playing = isPlaying;
+      muteBtn.classList.toggle("playing", isPlaying);
+      muteBtn.textContent = isPlaying ? "◖" : "♫";
+      muteBtn.setAttribute("aria-label", isPlaying ? "Pause music" : "Play music");
+      musicPrompt.hidden = isPlaying;
+    }
+
+    async function startMusic(showConfirmation = false) {
+      try {
+        audio.volume = 0.55;
+        await audio.play();
+        updateMusicState(true);
+        if (showConfirmation) showToast("Soundtrack is now playing");
+      } catch {
+        updateMusicState(false);
+        musicPrompt.hidden = false;
+      }
+    }
+
+    function copyEmail() {
+      navigator.clipboard?.writeText(EMAIL)
+        .then(() => showToast("Email address copied"))
+        .catch(() => showToast("Email: " + EMAIL));
+    }
+
+    document.getElementById("copyEmailBtn").addEventListener("click", copyEmail);
+    document.getElementById("sheetCopyEmailBtn").addEventListener("click", copyEmail);
+    muteBtn.addEventListener("click", () => {
+      if (playing) {
+        audio.pause();
+        updateMusicState(false);
+        musicPrompt.hidden = true;
+        showToast("Music paused");
+      } else {
+        startMusic(true);
+      }
+    });
+    musicPrompt.addEventListener("click", () => startMusic(true));
+
+    likeBtn.addEventListener("click", () => {
+      const liked = likeBtn.classList.toggle("liked");
+      likeBtn.textContent = liked ? "♥" : "♡";
+      likeBtn.setAttribute("aria-pressed", String(liked));
+      showToast(liked ? "Kaito received a little heart" : "Like removed");
+    });
+
+    window.addEventListener("load", () => {
+      startMusic();
+      const beginOnFirstInteraction = () => {
+        if (audio.paused) startMusic();
+        window.removeEventListener("pointerdown", beginOnFirstInteraction);
+        window.removeEventListener("keydown", beginOnFirstInteraction);
+      };
+      window.addEventListener("pointerdown", beginOnFirstInteraction, { once: true, capture: true });
+      window.addEventListener("keydown", beginOnFirstInteraction, { once: true });
+    });
+
+    document.getElementById("contactMenuBtn").addEventListener("click", () => {
+      contactBackdrop.hidden = false;
+      document.getElementById("sheetCloseBtn").focus();
+    });
+    document.getElementById("sheetCloseBtn").addEventListener("click", () => contactBackdrop.hidden = true);
+    contactBackdrop.addEventListener("click", event => {
+      if (event.target === contactBackdrop) contactBackdrop.hidden = true;
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") contactBackdrop.hidden = true;
+    });
+
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, text: "Visit Kaito's tiny lovely corner", url: location.href });
+        } else {
+          await navigator.clipboard.writeText(location.href);
+          showToast("Page link copied");
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") showToast("Sharing was not completed");
+      }
+    });
+    document.getElementById("scrollTopBtn").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: .14, rootMargin: "0px 0px -28px" });
+      revealElements.forEach((element, index) => {
+        element.style.transitionDelay = `${Math.min(index % 3, 2) * 90}ms`;
+        observer.observe(element);
+      });
+    } else {
+      revealElements.forEach(element => element.classList.add("is-visible"));
+    }
+  </script>
+</body>
+</html>
