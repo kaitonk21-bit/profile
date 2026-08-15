@@ -157,7 +157,7 @@
     .footer-actions { display: flex; gap: 8px; }
 
     .modal-backdrop { position: fixed; inset: 0; z-index: 9; display: grid; place-items: center; padding: 14px; background: rgba(89,58,67,.32); backdrop-filter: blur(7px); }
-    .modal-backdrop[hidden] { display: none; }
+    .modal-backdrop[hidden] { display: none !important; pointer-events: none; }
     .contact-sheet { width: min(390px, 100%); overflow: visible; border: 1px solid rgba(255,255,255,.85); border-radius: 29px 23px 31px 25px; color: var(--ink); background: var(--paper); box-shadow: 0 30px 90px rgba(93,55,66,.3); }
     .sheet-inner { position: relative; padding: 24px 20px 20px; }
     .sheet-tape { position: absolute; width: 72px; height: 20px; top: -9px; left: calc(50% - 36px); background: rgba(244,223,160,.8); transform: rotate(-2deg); }
@@ -407,16 +407,32 @@
       window.addEventListener("keydown", beginOnFirstInteraction, { once: true });
     });
 
-    document.getElementById("contactMenuBtn").addEventListener("click", () => {
-      contactBackdrop.hidden = false;
-      document.getElementById("sheetCloseBtn").focus();
+    const contactMenuBtn = document.getElementById("contactMenuBtn");
+    const sheetCloseBtn = document.getElementById("sheetCloseBtn");
+
+    function openContactModal() {
+      contactBackdrop.removeAttribute("hidden");
+      contactBackdrop.setAttribute("aria-hidden", "false");
+      sheetCloseBtn.focus();
+    }
+
+    function closeContactModal() {
+      contactBackdrop.setAttribute("hidden", "");
+      contactBackdrop.setAttribute("aria-hidden", "true");
+      contactMenuBtn.focus();
+    }
+
+    contactMenuBtn.addEventListener("click", openContactModal);
+    sheetCloseBtn.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopPropagation();
+      closeContactModal();
     });
-    document.getElementById("sheetCloseBtn").addEventListener("click", () => contactBackdrop.hidden = true);
     contactBackdrop.addEventListener("click", event => {
-      if (event.target === contactBackdrop) contactBackdrop.hidden = true;
+      if (event.target === contactBackdrop) closeContactModal();
     });
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape") contactBackdrop.hidden = true;
+      if (event.key === "Escape" && !contactBackdrop.hidden) closeContactModal();
     });
 
     document.getElementById("shareBtn").addEventListener("click", async () => {
